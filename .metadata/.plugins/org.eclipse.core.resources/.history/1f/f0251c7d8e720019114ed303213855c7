@@ -1,0 +1,138 @@
+package mentorMateLogo;
+
+public class Logo {
+	private int width;
+	
+	private int originalWidth;
+	
+	private int topOrBottomLinesMiddleNumber;
+	
+	private int middleLinesAverageNumber;
+	
+	private int startingIncrementingValue;
+	
+	private int finalIncrementingValue;
+	
+	private int startingDecreasingValue;
+	
+	private int finalDecreasingValue;
+	
+	private enum SpecialChars {
+		DASH{
+			@Override
+			public String toString() {
+				return "-";
+			}
+		},
+		
+		STAR{
+			@Override
+			public String toString() {
+				return "*";
+			}
+		}
+	}
+
+	public Logo(int width) {
+		this.setWidth(width);
+		this.setOriginalWidth(width);
+		this.setTopOrBottomLinesMiddleNumber(width * 2);
+		this.setMiddleLinesAverageNumber(width * 2);
+		this.setStartingIncrementingValue(width);
+		this.setFinalIncrementingValue(0);
+		this.setStartingDecreasingValue(width);
+		this.setFinalIncrementingValue(0);
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getOriginalWidth() {
+		return originalWidth;
+	}
+
+	public void setOriginalWidth(int originalWidth) {
+		this.originalWidth = originalWidth;
+	}
+
+	public int getTopOrBottomLinesMiddleNumber() {
+		return topOrBottomLinesMiddleNumber;
+	}
+
+	public void setTopOrBottomLinesMiddleNumber(int topOrBottomLinesMiddleNumber) {
+		this.topOrBottomLinesMiddleNumber = topOrBottomLinesMiddleNumber;
+	}
+
+	public int getMiddleLinesAverageNumber() {
+		return middleLinesAverageNumber;
+	}
+
+	public void setMiddleLinesAverageNumber(int middleLinesAverageNumber) {
+		this.middleLinesAverageNumber = middleLinesAverageNumber;
+	}
+
+	public int getStartingIncrementingValue() {
+		return startingIncrementingValue;
+	}
+
+	public void setStartingIncrementingValue(int startingIncrementingValue) {
+		this.startingIncrementingValue = startingIncrementingValue;
+	}
+
+	public int getFinalIncrementingValue() {
+		return finalIncrementingValue;
+	}
+
+	public void setFinalIncrementingValue(int finalIncrementingValue) {
+		this.finalIncrementingValue = finalIncrementingValue;
+	}
+
+	public int getStartingDecreasingValue() {
+		return startingDecreasingValue;
+	}
+
+	public void setStartingDecreasingValue(int startingDecreasingValue) {
+		this.startingDecreasingValue = startingDecreasingValue;
+	}
+
+	public int getFinalDecreasingValue() {
+		return finalDecreasingValue;
+	}
+
+	public void setFinalDecreasingValue(int finalDecreasingValue) {
+		this.finalDecreasingValue = finalDecreasingValue;
+	}
+	
+	public static String createTopOrBottomLine(
+			int mediumPart, 
+			int n, 
+			StringBuilder sb,
+			String dash,
+			String star) {
+
+		for(int i = 1; i <= 4; i++) {
+			if(i % 2 == 0) {
+				sb.append(star.repeat(n));
+			}else {
+				sb.append(dash.repeat(n));
+			}
+		}
+		sb.append(dash.repeat(mediumPart));
+		for(int j = 1; j <= 4; j++) {
+			if(j % 2 == 0) {
+				sb.append(dash.repeat(n));
+			}else {
+				sb.append(star.repeat(n));
+			}
+		}
+		sb.append("\n");
+		
+		return sb.toString();
+	}
+	
+}

@@ -1,0 +1,46 @@
+package task;
+
+public class MentorMateLogo {
+
+	public static void main(String[] args) {
+		String sb = mentorMateLogo(3);
+		
+		System.out.println(sb);
+	}
+	
+	public static String mentorMateLogo(int n) {
+		StringBuilder sb = new StringBuilder();
+		String dash = "-";
+		String star = "*";
+		
+		int mediumPart = n * 2;
+		
+		//Printing top line
+		
+	}
+	
+	public static String createTopOrBottomLine(int mediumPart, int n) {
+		StringBuilder sb = new StringBuilder();
+		String dash = "-";
+		String star = "*";
+		
+		for(int i = 1; i <= 4; i++) {
+			if(i % 2 == 0) {
+				sb.append(star.repeat(n));
+			}else {
+				sb.append(dash.repeat(n));
+			}
+		}
+		sb.append(dash.repeat(startingMiddleNumber));
+		for(int j = 1; j <= 4; j++) {
+			if(j % 2 == 0) {
+				sb.append(dash.repeat(n));
+			}else {
+				sb.append(star.repeat(n));
+			}
+		}
+		sb.append("\n");
+		n--;
+		
+	}
+}

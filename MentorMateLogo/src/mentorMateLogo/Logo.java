@@ -1,0 +1,167 @@
+package mentorMateLogo;
+
+public class Logo { // main class,where i keep all details about the logo i need
+	private static final String DASH = "-"; // constant for dashes
+	
+	private static final String STAR = "*"; // constant for stars
+	
+	private int width; // the initial width 
+	
+	private int originalWidth; // i save the initial width in another variable, 
+	// because i will need it later
+	
+	private int topOrBottomLinesMiddleNumber; // this is the middle number for 
+	// the top and bottom line
+	
+	private int middleLinesAverageNumber; // the initial middle number for the 
+	// middle line
+	
+	private int startingIncrementingValue; //the incrementing initial value of 
+	// the first digits in the middle line
+	
+	private int finalIncrementingValue; // the final value i get after 
+	// incrementing the numbers in the middle
+	
+	private int startingDecreasingValue; //the decreasing initial value of the 
+	// first digits in the middle line
+	
+	private int finalDecreasingValue; // the final value i get after 
+	// decreasing the numbers in the middle
+
+	public Logo(int width) {
+		this.setWidth(width);
+		this.setOriginalWidth(width);
+		this.setTopOrBottomLinesMiddleNumber(width * 2);
+		this.setMiddleLinesAverageNumber(width * 2);
+		this.setStartingIncrementingValue(width);
+		this.setFinalIncrementingValue(0);
+		this.setStartingDecreasingValue(width);
+		this.setFinalIncrementingValue(0);
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getOriginalWidth() {
+		return originalWidth;
+	}
+
+	public void setOriginalWidth(int originalWidth) {
+		this.originalWidth = originalWidth;
+	}
+
+	public int getTopOrBottomLinesMiddleNumber() {
+		return topOrBottomLinesMiddleNumber;
+	}
+
+	public void setTopOrBottomLinesMiddleNumber(int topOrBottomLinesMiddleNumber) {
+		this.topOrBottomLinesMiddleNumber = topOrBottomLinesMiddleNumber;
+	}
+
+	public int getMiddleLinesAverageNumber() {
+		return middleLinesAverageNumber;
+	}
+
+	public void setMiddleLinesAverageNumber(int middleLinesAverageNumber) {
+		this.middleLinesAverageNumber = middleLinesAverageNumber;
+	}
+
+	public int getStartingIncrementingValue() {
+		return startingIncrementingValue;
+	}
+
+	public void setStartingIncrementingValue(int startingIncrementingValue) {
+		this.startingIncrementingValue = startingIncrementingValue;
+	}
+
+	public int getFinalIncrementingValue() {
+		return finalIncrementingValue;
+	}
+
+	public void setFinalIncrementingValue(int finalIncrementingValue) {
+		this.finalIncrementingValue = finalIncrementingValue;
+	}
+
+	public int getStartingDecreasingValue() {
+		return startingDecreasingValue;
+	}
+
+	public void setStartingDecreasingValue(int startingDecreasingValue) {
+		this.startingDecreasingValue = startingDecreasingValue;
+	}
+
+	public int getFinalDecreasingValue() {
+		return finalDecreasingValue;
+	}
+
+	public void setFinalDecreasingValue(int finalDecreasingValue) {
+		this.finalDecreasingValue = finalDecreasingValue;
+	}
+	
+	public String createTopOrBottomLine(
+			StringBuilder sb,
+			String dash,
+			String star) {
+		for(int i = 1; i <= 4; i++) { // The top and bottom lines consist 
+			// the initial width and in the middle i have the width multiply by 2
+			// I saw that until i reach the middle of the line i need to print 4
+			// times. I check if the step is even or odd to know what i have to 
+			// print dashes or stars. For the rest is the same and on the bottom
+			// line i have to swap the stars and dashes only.
+			
+			if(i % 2 == 0) {
+				sb.append(star.repeat(this.getOriginalWidth()));
+			}else {
+				sb.append(dash.repeat(this.getOriginalWidth()));
+			}
+		}
+		sb.append(dash.repeat(this.getTopOrBottomLinesMiddleNumber()));
+		for(int j = 1; j <= 4; j++) {
+			if(j % 2 == 0) {
+				sb.append(dash.repeat(this.getOriginalWidth()));
+			}else {
+				sb.append(star.repeat(this.getOriginalWidth()));
+			}
+		}
+		sb.append("\n");
+		
+		return sb.toString();
+	}
+	
+	public String printFirstMiddleLines(StringBuilder sb) {
+		sb.append(DASH.repeat(this.getWidth()));
+		sb.append(STAR.repeat(this.getStartingIncrementingValue()));
+		sb.append(DASH.repeat(this.getStartingDecreasingValue()));
+		sb.append(STAR.repeat(this.getStartingIncrementingValue()));
+		sb.append(DASH.repeat(this.getMiddleLinesAverageNumber()));
+		sb.append(STAR.repeat(this.getStartingIncrementingValue()));
+		sb.append(DASH.repeat(this.getStartingDecreasingValue()));
+		sb.append(STAR.repeat(this.getStartingIncrementingValue()));
+		sb.append(DASH.repeat(this.getWidth()));
+		
+		return sb.toString();
+	}
+	
+	public String printSecondMiddleLines(StringBuilder sb) {
+		sb.append(DASH.repeat(this.getWidth()));
+		sb.append(STAR.repeat(this.getOriginalWidth()));
+		sb.append(DASH.repeat(this.getFinalDecreasingValue()));
+		sb.append(STAR.repeat(this.getFinalIncrementingValue()));
+		sb.append(DASH.repeat(this.getFinalDecreasingValue()));
+		sb.append(STAR.repeat(this.getOriginalWidth()));
+		sb.append(DASH.repeat(this.getMiddleLinesAverageNumber()));
+		sb.append(STAR.repeat(this.getOriginalWidth()));
+		sb.append(DASH.repeat(this.getFinalDecreasingValue()));
+		sb.append(STAR.repeat(this.getFinalIncrementingValue()));
+		sb.append(DASH.repeat(this.getFinalDecreasingValue()));
+		sb.append(STAR.repeat(this.getOriginalWidth()));
+		sb.append(DASH.repeat(this.getWidth()));
+		
+		return sb.toString();
+	}
+}

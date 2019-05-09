@@ -1,0 +1,189 @@
+package task;
+
+import java.util.Scanner;
+import mentorMateLogo.Logo;
+
+public class MentorMateLogo {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		
+		System.out.print("Enter odd number:");
+		if(keyboard.hasNextInt()) {
+			int logoWidth = keyboard.nextInt();
+			if(logoWidth % 2 == 0) {
+				System.out.println("You entered even number.");
+			}else {
+				Logo mentorMate = new Logo(logoWidth);
+				String sb = mentorMateLogo(logoWidth, mentorMate);
+				System.out.println(sb);
+			}
+		}else {
+			System.out.println("You did not enter number.");
+		}
+		
+		keyboard.close();
+	}
+	
+	public static String mentorMateLogo(int n, Logo logo) {
+		StringBuilder sb = new StringBuilder();
+		
+//		int original = n;
+//		int startingMiddleNumber = n * 2;
+		
+		String dash = "-";
+		String star = "*";
+		
+//		int startingIncrementingValue = original;
+//		int finalIncrementingValue = 0;
+		
+//		int startingDecreasingValue = original;
+//		int finalDecreasingValue = 0;
+		
+//		int mediumPart = n * 2;
+		
+		//Printing top line
+		createTopOrBottomLine(
+				logo.getTopOrBottomLinesMiddleNumber(), 
+				logo.getOriginalWidth(), 
+				sb, 
+				dash,
+				star);
+		logo.setWidth(logo.getWidth() - 1);
+//		n--;
+		
+		for(int i = 2; i < logo.getOriginalWidth() + 1; i += logo.getOriginalWidth()/2) {
+			if(i == 2) {
+				for(int j = 1; j <= logo.getOriginalWidth()/2; j++) {
+//					startingMiddleNumber = startingMiddleNumber - 2;
+//					startingIncrementingValue = startingIncrementingValue + 2;
+//					startingDecreasingValue = startingDecreasingValue - 2;
+					logo.setMiddleLinesAverageNumber(logo.getMiddleLinesAverageNumber() - 2);
+					logo.setStartingIncrementingValue(logo.getStartingIncrementingValue() + 2);
+					logo.setStartingDecreasingValue(logo.getStartingDecreasingValue() -2);
+					printFirstMiddleLines(
+							sb,
+							n, 
+							logo.getStartingIncrementingValue(), 
+							logo.getStartingDecreasingValue(),
+							logo.getMiddleLinesAverageNumber(),
+							dash,
+							star);
+//					finalIncrementingValue = startingIncrementingValue;
+//					finalDecreasingValue = startingDecreasingValue;
+					logo.setFinalIncrementingValue(logo.getStartingIncrementingValue());
+					logo.setFinalDecreasingValue(logo.getStartingDecreasingValue());
+//					n--;
+					logo.setWidth(logo.getWidth() -1);
+					sb.append("\n");
+				}
+			}else {
+				for(int j = i; j <= logo.getOriginalWidth(); j++) {
+//					startingMiddleNumber = startingMiddleNumber - 2;
+					logo.setMiddleLinesAverageNumber(logo.getMiddleLinesAverageNumber() - 2);
+					printSecondMiddleLines(
+							sb,
+							n,
+							logo.getOriginalWidth(),
+							logo.getFinalDecreasingValue(),
+							logo.getFinalIncrementingValue(),
+							logo.getMiddleLinesAverageNumber(),
+							dash,
+							star);
+//					finalDecreasingValue = finalDecreasingValue + 2;
+//					finalIncrementingValue = finalIncrementingValue - 2;
+					logo.setFinalDecreasingValue(logo.getFinalDecreasingValue() + 2);
+					logo.setFinalIncrementingValue(logo.getFinalIncrementingValue() -2);
+//					n--;
+					logo.setWidth(logo.getWidth() -1);
+					sb.append("\n");
+				}
+			}
+		}
+		
+		//Printing bottom line
+		createTopOrBottomLine(
+				logo.getTopOrBottomLinesMiddleNumber(), 
+				logo.getOriginalWidth(), 
+				sb,
+				star,
+				dash);
+		
+		return sb.toString();
+		
+	}
+	
+	public static String printFirstMiddleLines(
+			StringBuilder sb,
+			int n,
+			int startingIncrementingValue,
+			int startingDecreasingValue,
+			int startingMiddleNumber,
+			String dash,
+			String star) {
+		sb.append(dash.repeat(n));
+		sb.append(star.repeat(startingIncrementingValue));
+		sb.append(dash.repeat(startingDecreasingValue));
+		sb.append(star.repeat(startingIncrementingValue));
+		sb.append(dash.repeat(startingMiddleNumber));
+		sb.append(star.repeat(startingIncrementingValue));
+		sb.append(dash.repeat(startingDecreasingValue));
+		sb.append(star.repeat(startingIncrementingValue));
+		sb.append(dash.repeat(n));
+		
+		return sb.toString();
+	}
+	
+	public static String printSecondMiddleLines(
+			StringBuilder sb,
+			int n,
+			int original,
+			int finalDecreasingValue,
+			int finalIncrementingValue,
+			int startingMiddleNumber,
+			String dash,
+			String star) {
+		sb.append(dash.repeat(n));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(finalIncrementingValue));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(startingMiddleNumber));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(finalIncrementingValue));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(n));
+		
+		return sb.toString();
+	}
+	
+	public static String createTopOrBottomLine(
+			int mediumPart, 
+			int n, 
+			StringBuilder sb,
+			String dash,
+			String star) {
+
+		for(int i = 1; i <= 4; i++) {
+			if(i % 2 == 0) {
+				sb.append(star.repeat(n));
+			}else {
+				sb.append(dash.repeat(n));
+			}
+		}
+		sb.append(dash.repeat(mediumPart));
+		for(int j = 1; j <= 4; j++) {
+			if(j % 2 == 0) {
+				sb.append(dash.repeat(n));
+			}else {
+				sb.append(star.repeat(n));
+			}
+		}
+		sb.append("\n");
+		
+		return sb.toString();		
+	}
+}

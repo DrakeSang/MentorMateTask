@@ -1,0 +1,14 @@
+package task;
+
+public class MentorMateLogo {
+
+	public static void main(String[] args) {
+		String sb = mentorMateLogo(3);
+		
+		System.out.println(sb);
+	}
+	
+	public static String mentorMateLogo(int n) {
+		
+	}
+}

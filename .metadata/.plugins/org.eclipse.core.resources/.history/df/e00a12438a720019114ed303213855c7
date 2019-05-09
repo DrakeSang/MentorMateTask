@@ -1,0 +1,34 @@
+package mentorMateLogo;
+
+public class Logo {
+	private int width;
+	
+	private int originalWidth;
+	
+	private int topOrBottomLinesMiddleNumber;
+	
+	private int middleLinesAverageNumber;
+	
+	private int startingIncrementingValue;
+	
+	private int finalIncrementingValue;
+	
+	private int startingDecreasingValue;
+	
+	private int finalDecreasingValue;
+
+	public Logo(int width) {
+		this.width = width;
+		this.originalWidth = width;
+		this.topOrBottomLinesMiddleNumber = width * 2;
+		this.middleLinesAverageNumber = width * 2;
+		this.startingIncrementingValue = width;
+		this.finalIncrementingValue = 0;
+		this.startingDecreasingValue = width;
+		this.finalIncrementingValue = 0;
+	}
+	
+	
+	
+	
+}

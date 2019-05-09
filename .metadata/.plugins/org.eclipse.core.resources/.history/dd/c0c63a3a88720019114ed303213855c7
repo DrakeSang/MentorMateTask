@@ -1,0 +1,9 @@
+package mentorMateLogo;
+
+public class Logo {
+	int width;
+	
+	int originalWidth;
+	
+	int originalMiddleNumber;
+}

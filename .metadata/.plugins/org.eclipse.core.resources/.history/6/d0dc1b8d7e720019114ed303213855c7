@@ -1,0 +1,119 @@
+package task;
+
+public class MentorMateLogo {
+
+	public static void main(String[] args) {
+		String sb = mentorMateLogo(11);
+		
+		System.out.println(sb);
+	}
+	
+	public static String mentorMateLogo(int n) {
+		StringBuilder sb = new StringBuilder();
+		
+		int original = n;
+		int startingMiddleNumber = n * 2;
+		
+		String dash = "-";
+		String star = "*";
+		
+		int startingIncrementingValue = original;
+		int finalIncrementingValue = 0;
+		
+		int startingDecreasingValue = original;
+		int finalDecreasingValue = 0;
+		
+		int mediumPart = n * 2;
+		
+		//Printing top line
+		createTopOrBottomLine(
+				mediumPart, 
+				original, 
+				sb, 
+				dash,
+				star);
+		n--;
+		
+		for(int i = 2; i < original + 1; i += original/2) {
+			if(i == 2) {
+				for(int j = 1; j <= original/2; j++) {
+					startingMiddleNumber = startingMiddleNumber - 2;
+					startingIncrementingValue = startingIncrementingValue + 2;
+					startingDecreasingValue = startingDecreasingValue - 2;
+					sb.append(dash.repeat(n));
+					sb.append(star.repeat(startingIncrementingValue));
+					sb.append(dash.repeat(startingDecreasingValue));
+					sb.append(star.repeat(startingIncrementingValue));
+					sb.append(dash.repeat(startingMiddleNumber));
+					sb.append(star.repeat(startingIncrementingValue));
+					sb.append(dash.repeat(startingDecreasingValue));
+					sb.append(star.repeat(startingIncrementingValue));
+					sb.append(dash.repeat(n));
+					finalIncrementingValue = startingIncrementingValue;
+					finalDecreasingValue = startingDecreasingValue;
+					n--;
+					sb.append("\n");
+				}
+			}else {
+				for(int j = i; j <= original; j++) {
+					startingMiddleNumber = startingMiddleNumber - 2;
+					sb.append(dash.repeat(n));
+					sb.append(star.repeat(original));
+					sb.append(dash.repeat(finalDecreasingValue));
+					sb.append(star.repeat(finalIncrementingValue));
+					sb.append(dash.repeat(finalDecreasingValue));
+					sb.append(star.repeat(original));
+					sb.append(dash.repeat(startingMiddleNumber));
+					sb.append(star.repeat(original));
+					sb.append(dash.repeat(finalDecreasingValue));
+					sb.append(star.repeat(finalIncrementingValue));
+					sb.append(dash.repeat(finalDecreasingValue));
+					sb.append(star.repeat(original));
+					sb.append(dash.repeat(n));
+					finalDecreasingValue = finalDecreasingValue + 2;
+					finalIncrementingValue = finalIncrementingValue - 2;
+					n--;
+					sb.append("\n");
+				}
+			}
+		}
+		
+		//Printing bottom line
+		createTopOrBottomLine(
+				mediumPart, 
+				original, 
+				sb,
+				star,
+				dash);
+		
+		return sb.toString();
+		
+	}
+	
+	public static String createTopOrBottomLine(
+			int mediumPart, 
+			int n, 
+			StringBuilder sb,
+			String dash,
+			String star) {
+
+		for(int i = 1; i <= 4; i++) {
+			if(i % 2 == 0) {
+				sb.append(star.repeat(n));
+			}else {
+				sb.append(dash.repeat(n));
+			}
+		}
+		sb.append(dash.repeat(mediumPart));
+		for(int j = 1; j <= 4; j++) {
+			if(j % 2 == 0) {
+				sb.append(dash.repeat(n));
+			}else {
+				sb.append(star.repeat(n));
+			}
+		}
+		sb.append("\n");
+		
+		return sb.toString();		
+	}
+}

@@ -1,0 +1,166 @@
+package classes;
+
+public class Student {
+	public static Student instance;
+	
+	public static int studentsCount;
+	
+	private String firstName;
+	
+	private String secondName;
+	
+	private String thirdName;
+	
+	private Integer course;
+	
+	private Speciality speciality;
+	
+	public enum Speciality {
+		"*",
+		KTT,
+		SIT,
+		Dentist
+	}
+	
+	private Univerity university;
+	
+	public enum Univerity {
+		TechincalUniveristy,
+		VINS,
+		MedicalUniveristy,
+		NavalUniversity
+	}
+	
+	private String email;
+	
+	private String phoneNumber;
+	
+	public static Student getInstance(){
+		try{
+            instance = new Student();
+        }catch(Exception e){
+            throw new RuntimeException("Exception occured in creating singleton instance");
+        }
+        return instance;
+	}
+	
+	public Student() {
+		this("Emil", "Ventsislavov", "Yordanov");
+	}
+	
+	public Student(
+			String firstName, 
+			String secondName, 
+			String thirdName) {
+		this(firstName, secondName, thirdName, 0);
+	}
+	
+	public Student(
+			String firstName, 
+			String secondName, 
+			String thirdName, 
+			int course) {
+		this(firstName, secondName, thirdName, course, Speciality.KST, Univerity.TechincalUniveristy);
+	}
+	
+	public Student(
+			String firstName, 
+			String secondName, 
+			String thirdName, 
+			int course, 
+			Speciality speciality, 
+			Univerity university) {
+		this(firstName, secondName, thirdName, course, speciality, university, null);
+	}
+	
+	public Student (
+			String firstName,
+			String secondName,
+			String thirdName,
+			int course,
+			Speciality speciality,
+			Univerity university,
+			String email) {
+		this(firstName, secondName, thirdName, course, speciality, university, email, null);
+	}
+	
+	public Student (
+			String firstName,
+			String secondName,
+			String thirdName,
+			int course,
+			Speciality speciality,
+			Univerity university,
+			String email,
+			String phoneNumber) {
+		this.firstName = firstName;
+		this.secondName = secondName;
+		this.thirdName = thirdName;
+		this.course = course;
+		this.speciality = speciality;
+		this.university = university;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		studentsCount += 1;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getSecondName() {
+		return secondName;
+	}
+	
+	public String getThirdName() {
+		return thirdName;
+	}
+	
+	public Integer getCourse() {
+		return course;
+	}
+	
+	public Speciality getSpeciality() {
+		return speciality;
+	}
+	
+	public Univerity getUniversity() {
+		return university;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	@Override
+	public String toString() {
+		return 
+				"Student:" + 
+				"Full Name->" + 
+				this.firstName + 
+				" " +
+				this.secondName +
+				" " +
+				this.thirdName +
+				"; " +
+				"University->" +
+				this.university +
+				"; " +
+				"Speciality->" +
+				this.speciality +
+				"; " +
+				"Course->" +
+				this.course +
+				"; " +
+				"Email->" +
+				this.email +
+				"; " +
+				"Phone Number->" +
+				this.phoneNumber + 
+				";";		
+	}
+}

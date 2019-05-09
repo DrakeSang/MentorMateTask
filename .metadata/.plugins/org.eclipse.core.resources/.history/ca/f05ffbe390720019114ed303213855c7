@@ -1,0 +1,119 @@
+package task;
+
+import java.util.Scanner;
+import mentorMateLogo.Logo;
+
+public class MentorMateLogo {
+
+	public static void main(String[] args) {
+		Scanner keyboard = new Scanner(System.in);
+		
+		System.out.print("Enter odd number:");
+		if(keyboard.hasNextInt()) {
+			int logoWidth = keyboard.nextInt();
+			if(logoWidth % 2 == 0) {
+				System.out.println("You entered even number.");
+			}else {
+				Logo mentorMate = new Logo(logoWidth);
+				String sb = mentorMateLogo(logoWidth, mentorMate);
+				System.out.println(sb);
+			}
+		}else {
+			System.out.println("You did not enter number.");
+		}
+		
+		keyboard.close();
+	}
+	
+	public static String mentorMateLogo(int n, Logo logo) {
+		StringBuilder sb = new StringBuilder();
+		
+		String dash = "-";
+		String star = "*";
+		
+		//Printing top line
+		logo.createTopOrBottomLine(
+				logo.getTopOrBottomLinesMiddleNumber(), 
+				logo.getOriginalWidth(), 
+				sb, 
+				dash,
+				star);
+		logo.setWidth(logo.getWidth() - 1);
+		
+		for(int i = 2; i < logo.getOriginalWidth() + 1; i += logo.getOriginalWidth()/2) {
+			if(i == 2) {
+				for(int j = 1; j <= logo.getOriginalWidth()/2; j++) {
+					logo.setMiddleLinesAverageNumber(logo.getMiddleLinesAverageNumber() - 2);
+					logo.setStartingIncrementingValue(logo.getStartingIncrementingValue() + 2);
+					logo.setStartingDecreasingValue(logo.getStartingDecreasingValue() -2);
+					logo.printFirstMiddleLines(
+							sb,
+							logo.getWidth(), 
+							logo.getStartingIncrementingValue(), 
+							logo.getStartingDecreasingValue(),
+							logo.getMiddleLinesAverageNumber(),
+							dash,
+							stars);
+					logo.setFinalIncrementingValue(logo.getStartingIncrementingValue());
+					logo.setFinalDecreasingValue(logo.getStartingDecreasingValue());
+					logo.setWidth(logo.getWidth() -1);
+					sb.append("\n");
+				}
+			}else {
+				for(int j = i; j <= logo.getOriginalWidth(); j++) {
+					logo.setMiddleLinesAverageNumber(logo.getMiddleLinesAverageNumber() - 2);
+					printSecondMiddleLines(
+							sb,
+							logo.getWidth(),
+							logo.getOriginalWidth(),
+							logo.getFinalDecreasingValue(),
+							logo.getFinalIncrementingValue(),
+							logo.getMiddleLinesAverageNumber(),
+							dash,
+							star);
+					logo.setFinalDecreasingValue(logo.getFinalDecreasingValue() + 2);
+					logo.setFinalIncrementingValue(logo.getFinalIncrementingValue() -2);
+					logo.setWidth(logo.getWidth() -1);
+					sb.append("\n");
+				}
+			}
+		}
+		
+		//Printing bottom line
+		logo.createTopOrBottomLine(
+				logo.getTopOrBottomLinesMiddleNumber(), 
+				logo.getOriginalWidth(), 
+				sb,
+				star,
+				dash);
+		
+		return sb.toString();
+		
+	}
+	
+	public static String printSecondMiddleLines(
+			StringBuilder sb,
+			int n,
+			int original,
+			int finalDecreasingValue,
+			int finalIncrementingValue,
+			int startingMiddleNumber,
+			String dash,
+			String star) {
+		sb.append(dash.repeat(n));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(finalIncrementingValue));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(startingMiddleNumber));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(finalIncrementingValue));
+		sb.append(dash.repeat(finalDecreasingValue));
+		sb.append(star.repeat(original));
+		sb.append(dash.repeat(n));
+		
+		return sb.toString();
+	}
+}

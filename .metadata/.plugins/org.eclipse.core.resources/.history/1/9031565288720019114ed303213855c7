@@ -1,0 +1,24 @@
+package mentorMateLogo;
+
+public class Logo {
+	private int width;
+	
+	private int originalWidth;
+	
+	private int originalMiddleNumber;
+	
+	private int startingIncrementingValue;
+	
+	private int finalIncrementingValue;
+	
+	private int startingDecreasingValue;
+	
+	private int finalDecreasingValue;
+
+	public Logo(int width) {
+		this.width = width;
+		this.originalWidth
+	}
+	
+	
+}
