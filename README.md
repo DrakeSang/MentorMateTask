@@ -1,7 +1,7 @@
 # MentorMateTask
 MentorMateTask
 
-The algorith i followed is:
+The algorithm i followed is:
 First i print the top line.
 Second i make for cycle who enters only 2 times.
 On the first time i print only the first middle lines and on the second i print second middle lines.
