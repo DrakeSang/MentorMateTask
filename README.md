@@ -8,6 +8,7 @@ On the first time i print only the first middle lines and on the second i print 
 On the first and second set of middle lines there is dependency between the numbers,which i found.
 And last i print the bottom line.
 I used java for the task.
+
 I hope you like it and i will be glad to become part of your intership.
 I am highly motivated to learn,grow and to write good code.
 Sincerely,
